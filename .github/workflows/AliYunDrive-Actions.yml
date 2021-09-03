@@ -1,4 +1,4 @@
-name: Aliyunpan-Actions
+name: AliYunDrive-Actions
 
 on:
   push:
@@ -11,7 +11,7 @@ on:
 jobs:
   run-it:
     runs-on: ubuntu-latest
-    name: Aliyunpan-Actions
+    name: AliYunDrive-Actions
     steps:
       - name: Checkout master
         uses: actions/checkout@master
@@ -54,7 +54,6 @@ jobs:
           # 更改时区
           sudo cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 
-          java -version
           ./rclone ls webdav:
           ./rclone lsd pan:
           echo "同步完毕"
