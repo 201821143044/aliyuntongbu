@@ -50,23 +50,6 @@ jobs:
           # 更改时区
           sudo cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 
-          ./rclone sync --user-agent "NONISV|Microsoft|Microsoft OneDrive for Windows/21.150.0725.0001" -v pan:/huangxi tj_s:/huangxi
-          echo "同济SharePoint的huangxi文件夹同步完毕"
-          ./rclone sync --user-agent "NONISV|Microsoft|Microsoft OneDrive for Windows/21.150.0725.0001" -v pan:/ping tj_s:/ping
-          echo "同济SharePoint的ping文件夹同步完毕"
-          ./rclone sync --user-agent "NONISV|Microsoft|Microsoft OneDrive for Windows/21.150.0725.0001" -v pan: sust_sharepoint:/media
-          echo "陕西科技大学sharepoint影视文件同步完毕"
-          ./rclone sync --user-agent "NONISV|Microsoft|Microsoft OneDrive for Windows/21.150.0725.0001" -v pan: sharepoint_cn:/media
-          echo "sharepoint_cn影视文件同步完毕"
-          ./rclone sync --user-agent "NONISV|Microsoft|Microsoft OneDrive for Windows/21.150.0725.0001" -v sust_sharepoint: sharepoint_cn:
-          echo "陕西科技大学sharepoint到sharepoint_cn的文件同步完毕"
-          ./rclone lsd tongji_golden:
-          echo "同济SharePoint_golden保活刷新完毕"
-          ./rclone lsd tj_o:
-          echo "同济OneDrive保活刷新完毕"
-          ./rclone lsd scut_o:
-          echo "华工OneDrive保活刷新完毕"
-          ./rclone lsd scut_s:
-          echo "华工SharePoint保活刷新完毕"
-          ./rclone copy ~/.config/rclone/rclone.conf weking_dropbox:PrivateDoc/rclone/PanSync
-          echo "rclone配置档备份完毕"
+          java -version
+          echo "同步完毕"
+
