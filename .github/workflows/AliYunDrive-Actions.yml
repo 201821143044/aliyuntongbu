@@ -55,6 +55,5 @@ jobs:
           sudo cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 
           ./rclone sync -v pan:/public webdav:/public
-          ./rclone dedupe webdav:/public
           echo "阿里云盘同步完毕"
 
