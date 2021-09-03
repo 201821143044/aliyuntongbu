@@ -22,15 +22,15 @@ jobs:
       - name: WebDAV-Run
       env:
           aliyundrive_refresh_token: ${{ secrets.aliyundrive_refresh_token }}
-        run: nohup java -jar webdav.jar --aliyundrive.refresh-token="$aliyundrive_refresh_token" &
+        run: nohup java -jar webdav-2.4.1.jar --aliyundrive.refresh-token="$aliyundrive_refresh_token" &
       - name: Rclone-Config
         env:
-          PANSYNC_RCLONE_CONFIG: ${{ secrets.PANSYNC_RCLONE_CONFIG }}
+          RCLONE_CONFIG: ${{ secrets.RCLONE_CONFIG }}
         run: |
           # 写配置文件
           mkdir -p ~/.config/rclone/
           cat << EOF > ~/.config/rclone/rclone.conf
-          $PANSYNC_RCLONE_CONFIG
+          $RCLONE_CONFIG
           EOF
       - name: Rclone-Run
         run: |
