@@ -1,4 +1,4 @@
-name: Aliyunpan-Actions
+name: PanSync-Actions
 
 on:
   push:
@@ -11,7 +11,7 @@ on:
 jobs:
   run-it:
     runs-on: ubuntu-latest
-    name: Aliyunpan-Actions
+    name: PanSync-Actions
     steps:
       - name: Checkout master
         uses: actions/checkout@master
