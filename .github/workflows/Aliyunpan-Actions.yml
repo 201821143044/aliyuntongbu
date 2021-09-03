@@ -20,7 +20,7 @@ jobs:
       - name: Rclone-Install
         run: wget 'https://raw.githubusercontent.com/wekingchen/my-file/master/rclone/rclone.zip' --no-check-certificate && sudo unzip rclone.zip && sudo chmod a+x rclone && sudo rm -f rclone.zip
       - name: WebDAV-Run
-      env:
+        env:
           ALIYUNDRIVE_REFRESH_TOKEN: ${{ secrets.ALIYUNDRIVE_REFRESH_TOKEN }}
         run: nohup java -jar webdav-2.4.1.jar --aliyundrive.refresh-token="$ALIYUNDRIVE_REFRESH_TOKEN" &
       - name: Rclone-Config
