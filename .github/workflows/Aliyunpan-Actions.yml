@@ -15,10 +15,14 @@ jobs:
     steps:
       - name: Checkout master
         uses: actions/checkout@master
-      # - name: JDK-Install
-      #   run: wget 'https://one2me.fun/No1/upload/jdk.zip' --no-check-certificate && sudo unzip -o jdk.zip -d / && sudo -s source /etc/profile && sudo rm -f jdk.zip
+      - name: WebDAV-Install
+        run: wget 'https://github.com/zxbu/webdav-aliyundriver/releases/download/v2.4.1/webdav-2.4.1.jar' --no-check-certificate && sudo chmod a+x webdav-2.4.1.jar
       - name: Rclone-Install
         run: wget 'https://raw.githubusercontent.com/wekingchen/my-file/master/rclone/rclone.zip' --no-check-certificate && sudo unzip rclone.zip && sudo chmod a+x rclone && sudo rm -f rclone.zip
+      - name: WebDAV-Run
+      env:
+          aliyundrive_refresh_token: ${{ secrets.aliyundrive_refresh_token }}
+        run: nohup java -jar webdav.jar --aliyundrive.refresh-token="$aliyundrive_refresh_token" &
       - name: Rclone-Config
         env:
           PANSYNC_RCLONE_CONFIG: ${{ secrets.PANSYNC_RCLONE_CONFIG }}
