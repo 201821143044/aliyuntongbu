@@ -57,3 +57,7 @@ jobs:
           ./rclone sync -v pan:/public webdav:/public
           echo "阿里云盘同步完毕"
 
+          ./rclone copy ~/.config/rclone/rclone.conf pan:/
+          echo "rclone配置档备份完毕"
+          
+          
