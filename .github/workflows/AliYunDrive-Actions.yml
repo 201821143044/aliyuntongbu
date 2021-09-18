@@ -31,7 +31,7 @@ jobs:
       - name: WebDAV-Run
         env:
           ALIYUNDRIVE_REFRESH_TOKEN: ${{ secrets.ALIYUNDRIVE_REFRESH_TOKEN }}
-        run: nohup java -jar webdav.jar --aliyundrive.refresh-token="$ALIYUNDRIVE_REFRESH_TOKEN" --aliyundrive.work-dir=/etc/aliyun-driver/ &
+        run: nohup java -jar webdav.jar --aliyundrive.refresh-token="$ALIYUNDRIVE_REFRESH_TOKEN" &
       - name: Rclone-Run
         run: |
           # Rclone-Run
@@ -58,7 +58,6 @@ jobs:
           echo "阿里云盘同步完毕"
 
           ./rclone copy ~/.config/rclone/rclone.conf weking_dropbox:PrivateDoc/rclone/AliYunpan
-          ./rclone copy /etc/aliyun-driver/refresh-token weking_dropbox:PrivateDoc/rclone/AliYunpan
           echo "rclone配置档备份完毕"
-  
-        
+          
+          
