@@ -59,5 +59,17 @@ jobs:
 
           ./rclone copy ~/.config/rclone/rclone.conf weking_dropbox:PrivateDoc/rclone/AliYunpan
           echo "rclone配置档备份完毕"
+      - name: refresh-token-update
+        env:
+          CLI_TOKEN: ${{ secrets.CLI_TOKEN }}
+        run: |
+	        # 读取授权码
+	        echo ${CLI_TOKEN} > token
+
+	        # 登录CLI
+	        gh auth login --with-token < token
           
+	        # 更新refresh-token
+	        gh secret set ALIYUNDRIVE_REFRESH_TOKEN < /etc/aliyun-driver/refresh-token --repo 201821143044/aliyuntongbu
+	        echo "refresh-token更新完毕"
           
