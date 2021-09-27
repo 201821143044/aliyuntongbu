@@ -28,6 +28,22 @@ jobs:
           cat << EOF > ~/.config/rclone/rclone.conf
           $RCLONE_CONFIG
           EOF
+      - name: refresh-token-update
+        env:
+          CLI_TOKEN: ${{ secrets.CLI_TOKEN }}
+        run: |
+          # 获取最新refresh_token
+          ./rclone copy pan:/refresh_token /etc/aliyun-driver/refresh_token
+
+          # 读取授权码
+          echo ${CLI_TOKEN} > token
+
+          # 登录CLI
+          gh auth login --with-token < token
+
+          # 更新refresh-token
+          gh secret set ALIYUNDRIVE_REFRESH_TOKEN < /etc/aliyun-driver/refresh-token --repo 201821143044/aliyuntongbu
+          echo "refresh-token更新完毕"
       - name: WebDAV-Run
         env:
           ALIYUNDRIVE_REFRESH_TOKEN: ${{ secrets.ALIYUNDRIVE_REFRESH_TOKEN }}
@@ -59,18 +75,5 @@ jobs:
 
           ./rclone copy ~/.config/rclone/rclone.conf weking_dropbox:PrivateDoc/rclone/AliYunpan
           echo "rclone配置档备份完毕"
-      - name: refresh-token-update
-        env:
-          CLI_TOKEN: ${{ secrets.CLI_TOKEN }}
-        run: |
-          # 读取授权码
-          echo ${CLI_TOKEN} > token
 
-          # 登录CLI
-          gh auth login --with-token < token
-
-          # 更新refresh-token
-          gh secret set ALIYUNDRIVE_REFRESH_TOKEN < /etc/aliyun-driver/refresh-token --repo 201821143044/aliyuntongbu
-          echo "refresh-token更新完毕"
           
-
