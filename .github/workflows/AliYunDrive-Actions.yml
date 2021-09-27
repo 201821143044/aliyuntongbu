@@ -34,7 +34,6 @@ jobs:
         run: |
           # 获取最新refresh_token
           ./rclone copy pan:/refresh_token ~/refresh-token
-          sudo chmod a+x /home/runner/refresh-token
 
           # 读取授权码
           echo ${CLI_TOKEN} > token
@@ -43,7 +42,7 @@ jobs:
           gh auth login --with-token < token
 
           # 更新refresh-token
-          gh secret set ALIYUNDRIVE_REFRESH_TOKEN < '/home/runner/refresh-token' --repo 201821143044/aliyuntongbu
+          gh secret set ALIYUNDRIVE_REFRESH_TOKEN < "/home/runner/refresh-token" --repo 201821143044/aliyuntongbu
           echo "refresh-token更新完毕"
       - name: WebDAV-Run
         env:
