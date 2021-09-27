@@ -37,6 +37,8 @@ jobs:
 
           # 读取授权码
           echo ${CLI_TOKEN} > token
+          
+          ls
 
           # 登录CLI
           gh auth login --with-token < token
