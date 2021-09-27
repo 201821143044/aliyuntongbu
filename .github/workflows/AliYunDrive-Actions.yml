@@ -43,7 +43,7 @@ jobs:
           gh auth login --with-token < token
 
           # 更新refresh-token
-          gh secret set ALIYUNDRIVE_REFRESH_TOKEN < /home/runner/refresh-token --repo 201821143044/aliyuntongbu
+          #gh secret set ALIYUNDRIVE_REFRESH_TOKEN < /home/runner/refresh-token --repo 201821143044/aliyuntongbu
           echo "refresh-token更新完毕"
       - name: WebDAV-Run
         env:
